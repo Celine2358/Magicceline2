@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (HP > 0 && BossHP > 0) {
             MPRecover();
         }
-    }, 800 - (160 * MpM));
+    }, 700 - (140 * MpM));
     setInterval(function() {
         if (HP > 0 && BossHP > 0) {
             HPChange();
@@ -216,8 +216,8 @@ function HPChange() { // HP 변화
     eletricDamage4();
     bossballDamage();
     MapPoisonDamage();
-    SunsapireBallDamage();
     bossfireDamage();
+    SunsapireBallDamage();
 
     if (HP <= 0) { // HP 음수 방지
         HP = 0;
