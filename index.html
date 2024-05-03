@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="celineicon2.png"> <!--사이트 아이콘-->
+    <title>매직 셀리느 RPG v1.2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+        body {
+            font-family: "Do Hyeon", sans-serif;
+            font-weight: 400;
+            overflow: hidden; /* 페이지 영역 초과 방지 */
+        }
+
+        .background, .backgroundImg {
+            display: flex;
+        }
+        #Celine {
+            display: none;
+            position: absolute;
+            opacity: 0.2; /* 투명도 20% */
+            top: 620px;
+            left: 20px;
+        }
+        #ChatBox {
+            display: none;
+            position: absolute;
+            top: 450px;
+            left: 220px;
+            font-size: 19px;
+            text-align: center;
+        }
+        #ChatContent {
+            position: absolute;
+            top: 65px;
+            left: 25px;
+        }
+        #Boss {
+            display: none;
+            position: absolute;
+            opacity: 0.1; /* 투명도 20% */
+            top: 360px;
+            left: 1200px;
+        }
+        #icon {
+            position: absolute;
+            top: 48px;
+            left: 320px;
+        }
+        #Intro0, #Intro1, #Intro3, #Intro4, #Intro5, #Intro6,
+        #Skill1Info, #Skill2Info, #Skill3Info, #Skill4Info,
+        #Skill5Info, #Skill6Info, #Skill7Info, #Skill8Info, #Skill9Info {
+            display: block;
+            position: absolute;
+            background-color: white;
+            opacity: 0.9; /* 투명도 90% */
+            border: 3px solid black;
+            border-radius: 16px;
+            box-shadow: 0 0 15px black;
+            width: 1100px; height: 600px;
+            top: 115px;
+            left: 400px;
+            font-size: 22px;
+            text-align: center;
+        }
+        #Intro2 {
+            display: none;
+            position: absolute;
+            background-color: white;
+            opacity: 0.9; /* 투명도 90% */
+            border: 3px solid black;
+            border-radius: 16px;
+            box-shadow: 0 0 15px black;
+            width: 1100px; height: 400px;
+            top: 215px;
+            left: 400px;
+            font-size: 30px;
+            text-align: center; line-height: 400px;
+        }
+        #Intro5 {
+            width: 1000px; height: 600px;
+            left: 200px;
+        }
+        #SkillHeal {
+            display: block;
+            position: absolute;
+            width: 150px; height: 200px;
+            border: 3px solid black;
+            border-radius: 10px;
+            left: 800px; top: 320px;
+        }
+        #Skill1Info, #Skill2Info, #Skill3Info, #Skill4Info,
+        #Skill5Info, #Skill6Info, #Skill7Info, #Skill8Info, #Skill9Info {
+            width: 400px; height: 600px;
+            left: 1350px;
+        }
+        #Skill1Info, #Skill2Info, #Skill3Info, #Skill4Info,
+        #Skill5Info, #Skill6Info, #Skill7Info, #Skill8Info, #Skill9Info {
+            display: none;
+        }
+        #Intro1, #Intro3, #Intro4, #Intro5, #Intro6 { /* 수정 필요 */
+            display: none;
+        }
+        #next1, #next2, #next3, #next4, #next5, #Normal, #Hard, #Skip {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            background-color: white;
+            opacity: 1; /* 불투명 */
+            border: 2px solid black;
+            border-radius: 18px;
+            width: 130px; height: 30px;
+            top: 500px;
+            left: 485px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 30px;
+        }
+        #next2, #next3 {
+            display: none;
+        }
+        #next5 {
+            left: 435px;
+            top: 550px;
+        }
+        #Skip {
+            top: 540px;
+        }
+        #Normal {
+            top: 540px;
+            left: 390px;
+        }
+        #Hard {
+            color: crimson;
+            top: 540px;
+            left: 585px;
+        }
+        #Maker {
+            position: absolute;
+            top: 560px;
+            left: 980px;
+        }
+        #Chat1, #Chat2 {
+            display: none;
+            position: absolute;
+            background-color: white;
+            opacity: 0.9; /* 투명도 90% */
+            border: 3px solid black;
+            border-radius: 16px;
+            box-shadow: 0 0 15px black;
+            width: 900px; height: 180px;
+            top: 600px;
+            left: 500px;
+            font-size: 23px;
+            text-align: center; line-height: 180px;
+        }
+        #Standing, #BossStanding {
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 8px;
+            width: 70px; height: 60px;
+            top: -66px;
+            line-height: 60px;
+        }
+        #Name, #BossName {
+            position: absolute;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 8px;
+            width: 100px; height: 28px;
+            font-size: 22px;
+            text-align: center; line-height: 28px;
+            top: -33px;
+            left: 75px;
+        }
+        #a, #b, #c, #d, #e, #f,
+        #g, #h, #i, #j, #k, #l, #m, #n, #o, #p, #q, #r, #s, #t, #u, #v, #w,
+        #y {
+            opacity: 0.2; /* 투명도 20% */
+            display: none;
+        }
+        #AttackMod, #GuardMod, #MPMod {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            width: 300px; height: 440px;
+            font-size: 22px;
+            text-align: center;
+            top: 30px;
+            left: 35px;
+        }
+        #Skill1, #Skill2, #Skill3, #Skill4, #Skill5, #Skill6, #Skill7, #Skill8, #Skill9 {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 10px;
+            width: 100px; height: 100px;
+            left: 120px; top: 60px;
+        }
+        #Skill2 {
+            left: 340px;
+        }
+        #Skill3 {
+            left: 560px;
+        }
+        #Skill4 {
+            left: 780px;
+        }
+        #Skill5 {
+            top: 240px;
+        }
+        #Skill6 {
+            left: 340px; top: 240px;
+        }
+        #Skill7 {
+            left: 560px; top: 240px;
+        }
+        #Skill8 {
+            top: 420px;
+        }
+        #Skill9 {
+            left: 340px; top: 420px;
+        }
+        #S1, #S2, #S3, #S4, #S5, #S6, #S7, #S8, #S9 {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 10px;
+            width: 100px; height: 100px;
+            left: 150px; top: 100px;
+        }
+        #Reset {
+            cursor: pointer;
+            display: block;
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 10px;
+            width: 150px; height: 35px;
+            left: 800px; top: 260px;
+            text-align: center; line-height: 35px;
+        }
+        #Mod, #Skills, #Stat {
+            display: block;
+            position: absolute;
+            background-color: white;
+            border: 3px solid black;
+            border-radius: 10px;
+            width: 28%; height: 75%;
+            left: 3%; top: 50px;
+        }
+        #Skills {
+            left: 36%;
+        }
+        #Stat {
+            left: 69%;
+        }
+    </style>
+</head>
+<body>
+    <audio id="BGM" loop autoplay> <!--BGM-->
+        <source src="KuroBGM.mp3" type="audio/mp3">
+    </audio>
+    <audio id="Appear"> <!--등장음-->
+        <source src="KuroAppear.mp3" type="audio/mp3">
+    </audio>
+    <div class="background">
+        <div class="backgroundImg"> <!--쿠로 맵 배경-->
+            <div id="Map">
+                <img id="MapImg" src="Map2.png">
+            </div>
+        </div>
+        <div id="Celine"> <!--셀리느-->
+            <img id="CelineImg" src="Celine.gif" alt="셀리느">
+        </div>
+        <div id="ChatBox"> <!--말풍선-->
+            <img src="ChatBox.png" style="width: 180px; height: 180px;">
+            <div id="ChatContent">전투방식을 골라줘!</div>
+        </div>
+        <div id="Boss"> <!--보스 : 쿠로-->
+            <div id="Kuro">
+                <img style="width: 300px; height: 403px;" id="KuroImg" src="KuroStand.gif" alt="보스">
+            </div>
+        </div>
+        <div id="Intro0"> <!--인트로-->
+            <div style="font-size: 38px; color: #FF3333; -webkit-text-stroke: 1px black;">
+                <br>매직 셀리느 RPG v1.2
+            </div>
+            <div id="icon">
+                <img src="celine1.png">
+            </div>
+            <div>
+                <br><div style="font-size: 34px; color: #0080FF; -webkit-text-stroke: 1px black;">Update</div>
+            </div>
+            <div>- 플레이어 캐릭터 외형 변경</div>
+            <div>- 새로운 전투 시스템</div>
+            <div>- 고대 마법사 쿠로 (Normal)</div>
+            <div>
+                <br>지금부터 시작하는 <span style="color: #FF3333">셀리느</span>의 2번째 모험!!
+            </div>
+            <div id="next1" onclick="NextA()">Start</div>
+            <div id="Skip" onclick="Skip()">Story Skip</div>
+            <div id="Maker">제작 : 셀리느</div>
+        </div>
+        <div id="Intro1">
+            <div id="a"><br><br>이곳은... 600년 전 <span style="color: navy;">고대의 마법사</span>들이 이름을 남기고 잠든 <span style="color: blue;">선사파이어</span>의 신전</div>
+            <div id="b"><br>파수꾼 '고대의 골렘'을 쓰러뜨린 <span style="color: #FF3333">셀리느</span>는</div>
+            <div id="c"><br>지하 도시에 숨겨진 <span style="color: blue;">선사파이어</span>의 신전을 찾아낸다.</div>
+            <div id="d"><br>신전의 중심에는 <span style="color: blue;">선사파이어</span>의 위대한 마법사들의 모습이 보인다.</div>
+            <div id="e" style="color: red"><br><br>(우우우....우우우우...우우우웅)</div>
+            <div id="f"><br><br>먼 옛날 존재가 사라진 장소지만 불길한 마력이 느껴진다...</div>
+            <div id="Maker">제작 : 셀리느</div>
+            <div id="next2" onclick="NextB()">Next</div>
+        </div>
+        <div id="Chat1">
+            <div id="Standing">
+                <img id="StandImg" src="celine1.png">
+            </div>
+            <div id="Name">
+                셀리느
+            </div>
+            <div id="g">이곳이 바로 고대 마법 도시 <span style="color: blue;">선사파이어</span>... 이렇게 웅장한 신전이 있다니</div>
+            <div id="h">조각상들은 고대의 마법사들인건가? 특히 중앙의 조각상... 책에서 본 적이 있던 것 같은데...</div>
+            <div id="i">기억해보자! 분명 <span style="color: navy;">백과 흑의 역사 IV</span>였지? 그는 640년 전 흑과 백의 마법의 정점에 올라</div>
+            <div id="j">마법의 도시 <span style="color: blue;">선사파이어</span>를 번영시키고 그 곳의 왕이 된다.</div>
+            <div id="k">마법사들은 차원이 다른 <span style="color: navy;">백과 흑의 마법</span>을 사용하며 도시는 수 십년간 마법의 정점으로 군림하였다.</div>
+            <div id="l">하지만 백과 흑의 마법을 동시에 사용하는 것은 마법계의 금기... 결국 <span style="color: blue;">선사파이어</span>는 멸망했다.</div>
+            <div id="m">그의 이름은 <span style="color: red;">대마법사 최비령</span>...!!</div>
+            <div id="p">어...?! 무슨 소리지? 여긴 아무도 없는데??</div>
+            <div id="s">그 유명한 흑마법사 쿠로...? 살아있는건가요?!</div>
+            <div id="t">전 단지 꿈꾸던 선사파이어를 탐험하고싶은 것 뿐이예요!! 이곳을 더럽힐 생각은 없어요!</div>
+            <div id="w">으으... 싸울 수 밖에 없나...?</div>
+        </div>
+        <div id="Chat2">
+            <div id="BossStanding">
+                <img style="width: 66px; height: 60px;" src="BossKuroicon.png">
+            </div>
+            <div id="BossName">
+                쿠로
+            </div>
+            <div id="q" style="color: red; font-size: 30px">나는 쿠로... 선사파이어의 마법사...</div>
+            <div id="r" style="color: red; font-size: 30px">침입자여... 선사파이어를 더럽히지 마라...!!</div>
+            <div id="u" style="color: red; font-size: 30px">너도 선사파이어의 지식을 탐내는 마법사인가...? 무례한 것!!</div>
+            <div id="v" style="color: red; font-size: 30px">위대한 선사파이어를 위해 네놈을 없애버리겠다...!! 각오해라!!!</div>
+        </div>
+        <div id="Intro2">
+            <span id="n" style="color: red;">(찌리리리리리리리릿...!!!!)</span>
+            <span id="o" style="color: red;">침입자여... 위대한 왕의 이름을 함부로 부르지 마라...!!</span>
+        </div>
+        <div id="Intro3">
+            <div><br><img src="KuroHead.png"></div>
+            <div id="y">
+                <div><br><span style="font-size: 32px; color: crimson; -webkit-text-stroke: 1px black;">고대의 마법사 쿠로</span></div>
+                <div><br>마법의 정점이라 불린 <span style="color: blue;">선사파이어</span>의 고위 마법사</div>
+                <div>조국의 왕을 굉장히 존경하고 있으며, 그를 모욕하는 것을 가장 싫어한다.</div>
+                <div>특히 <span style="color: navy;">흑마법</span>의 고수이며 화염계 마법을 잘 다룬다.</div>
+                <div>그의 충성심과 실력은 선사파이어의 왕 <span style="color: red;">최비령</span>이 높게 평가할 정도.</div>
+                </div>
+            <div id="next3" onclick="NextC()">Next</div>
+        </div>
+        <div id="Intro4">
+            <div id="AttackMod" onclick="AttackUp()">
+                <br><img src="celineSword.png">
+                <br><span style="color: crimson; font-size: 28px;">공격 모드</span>
+                <br><br>공격력이 30% 증가합니다!
+                <br>치명타 확률이 10% 증가합니다!
+            </div>
+            <div id="GuardMod" style="left: 400px;" onclick="GuardUp()">
+                <br><img src="celineGuard.png">
+                <br><span style="color: green; font-size: 28px;">방어 모드</span>
+                <br><br>방어력이 40% 증가합니다!
+                <br>디버프 지속이 절반으로 감소합니다!
+            </div>
+            <div id="MPMod" style="left: 765px;" onclick="MPUp()">
+                <br><img src="celineMana.png">
+                <br><span style="color: blue; font-size: 28px;">MP 모드</span>
+                <br><br>최대 MP가 25% 증가합니다!
+                <br>MP 회복 속도가 20% 증가합니다!
+            </div>
+            <div id="next4" onclick="NextD()">Next</div>
+        </div>
+        <div id="Intro5">
+            <div style="position: absolute; left: 10px; top: 10px;"><img src="celine1.png"></div>
+            <div style="position: absolute; left: 10px; top: -120px;">
+                <img src="ChatBox.png" style="width: 150px; height: 150px;">
+                <span style="position: absolute; width: 150px; height: 150px; left: 2px; top: 40px; font-size: 20px;">어떤 스킬을<br>사용할까?</span>
+            </div>
+            <div><span style="color: green; font-size: 30px;">초급 스킬 (택 2)</span></div>
+            <div>
+                <div id="Skill1" onmouseover="Info1()" onclick="Select1()"><img src="Skillicon1.png"></div>
+                <div id="Skill2" onmouseover="Info2()" onclick="Select2()"><img src="Skillicon2.png"></div>
+                <div id="Skill3" onmouseover="Info3()" onclick="Select3()"><img src="Skillicon3.png"></div>
+                <div id="Skill4" onmouseover="Info4()" onclick="Select4()"><img src="Skillicon4.png" style="width: 100px; height: 100px;"></div>
+            </div>
+            <div><br><br><br><br><br><span style="color: blue; font-size: 30px;">중급 스킬 (택 2)</span></div>
+            <div>
+                <div id="Skill5" onmouseover="Info5()" onclick="Select5()"><img src="Skillicon5.png"></div>
+                <div id="Skill6" onmouseover="Info6()" onclick="Select6()"><img src="Skillicon6.png"></div>
+                <div id="Skill7" onmouseover="Info7()" onclick="Select7()"><img src="Skillicon7.png" style="width: 100px; height: 100px;"></div>
+            </div>
+            <div><br><br><br><br><br><span style="color: red; font-size: 30px;">고급 스킬 (택 1)</span></div>
+            <div>
+                <div id="Skill8" onmouseover="Info8()" onclick="Select8()"><img src="Skillicon8.png"></div>
+                <div id="Skill9" onmouseover="Info9()" onclick="Select9()"><img src="Skillicon9.png"></div>
+            </div>
+            <div id="Reset" onclick="SkillReset()">
+                스킬 초기화
+            </div>
+            <div id="SkillHeal">
+                <div>기본 스킬</div>
+                <img src="Healicon.png" style="width: 70px; height: 70px;">
+                <div>힐</div>
+                <div>MP 10%를 소모해<br>HP를 300 회복</div>
+            </div>
+            <div id="next5" onclick="NextE()">Next</div>
+        </div>
+        <div id="Skill1Info">
+            <span style="font-size: 30px;"><br>에너지 볼</span>
+            <div id="S1">
+                <img src="Skillicon1.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                (N) 무속성 / 투사체<br>
+                스킬 공격력 : 12<br>
+                MP 소모 : 3%<br>
+                쿨타임 : 2초<br><br>
+                마법사의 기본기! 자신의 마력을 응축한<br>
+                강력한 구체를 발사한다.
+            </div>
+        </div>
+        <div id="Skill2Info">
+            <span style="font-size: 30px;"><br>토네이도</span>
+            <div id="S2">
+                <img src="Skillicon2.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                (N) 무속성 / 설치기<br>
+                스킬 공격력 : 8<br>
+                MP 소모 : 6%<br>
+                쿨타임 : 5초<br><br>
+                거센 회오리바람을 일으킨다.<br>
+                회오리바람은 일으킨 자리에서 3초 간 지속된다.
+            </div>
+        </div>
+        <div id="Skill3Info">
+            <span style="font-size: 30px;"><br>썬더</span>
+            <div id="S3">
+                <img src="Skillicon3.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: red">(F) 화속성</span><br>
+                스킬 공격력 : 20<br>
+                MP 소모 : 10%<br>
+                쿨타임 : 10초<br><br>
+                적에게 강력한 벼락을 떨어뜨리는<br>
+                마법을 사용한다.<br>
+                화속성의 적에게 데미지가 감소한다.<br>
+                풀속성의 적에게 데미지가 증가한다.
+            </div>
+        </div>
+        <div id="Skill4Info">
+            <span style="font-size: 30px;"><br>마나 정령</span>
+            <div id="S4">
+                <img src="Skillicon4.png" style="width: 100px; height: 100px;">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                (N) 무속성 / 소환수<br>
+                소환수 공격력 : 15<br>
+                MP 소모 : 15%<br>
+                쿨타임 : 40초<br><br>
+                에너지 볼에 더 많은 마나를 사용해<br>
+                자신을 도와주는 정령을 창조한다.<br>
+                정령은 28초간 존재하며<br>
+                존재하는 동안 방어력을 10% 증가시킨다.<br>
+            </div>
+        </div>
+        <div id="Skill5Info">
+            <span style="font-size: 30px; color: blue;"><br>배리어</span>
+            <div id="S5">
+                <img src="Skillicon5.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: rgb(50, 130, 205)">(Buff)</span><br>
+                MP 소모 : 25%<br>
+                쿨타임 : 30초<br><br>
+                단단한 마력의 방어막을 만든다.<br>
+                방어막은 20초간 지속되며<br>
+                방어력이 50% 증가한다.
+            </div>
+        </div>
+        <div id="Skill6Info">
+            <span style="font-size: 30px; color: blue;"><br>프리즈</span>
+            <div id="S6">
+                <img src="Skillicon6.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: blue">(W) 수속성 / 디버프</span><br>
+                스킬 공격력 : 9<br>
+                MP 소모 : 30%<br>
+                쿨타임 : 50초<br><br>
+                차가운 냉기를 일으키는 마법으로<br>
+                적을 12초간 얼려버린다<br>
+                얼려진 적은 움직일 수 없으며<br>
+                방어력이 20% 감소한다.<br>
+                <span style="color: red">크리티컬이 발생하지 않는다.</span>
+            </div>
+        </div>
+        <div id="Skill7Info">
+            <span style="font-size: 30px; color: blue;"><br>워터 페어리</span>
+            <div id="S7">
+                <img src="Skillicon7.png" style="width: 100px; height: 100px;">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: blue">(W) 수속성 / 소환수</span><br>
+                소환수 공격력 : 27<br>
+                MP 소모 : 30%<br>
+                쿨타임 : 50초<br><br>
+                신월에 사는 물의 요정을 불러낸다.<br>
+                요정은 35초간 자신을 도와주며<br>
+                지속적으로 회복 효과를 부여한다.<br>
+                화속성의 적에게 데미지가 증가한다.
+            </div>
+        </div>
+        <div id="Skill8Info">
+            <span style="font-size: 30px; color: red;"><br>블루 메테오</span>
+            <div id="S8">
+                <img src="Skillicon8.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: red">(F) 화속성</span><br>
+                스킬 공격력 : 55<br>
+                MP 소모 : 45%<br>
+                쿨타임 : 60초<br><br>
+                모든 걸 파괴하는 유성우를 불러낸다.<br>
+                유성우에 피격당한 적은 15초간<br>
+                공격력이 20% 감소한다.<br>
+                <span style="color: red">추가 크리티컬 확률 +30%</span>
+            </div>
+        </div>
+        <div id="Skill9Info">
+            <span style="font-size: 30px; color: red;"><br>신월의 숲</span>
+            <div id="S9">
+                
+                <img src="Skillicon9.png">
+            </div>
+            <div>
+                <br><br><br><br><br><br>
+                <span style="color: green">(G) 풀속성 / (Buff)</span><br>
+                스킬 공격력 : 25<br>
+                MP 소모 : 50%<br>
+                쿨타임 : 60초<br><br>
+                셀리느의 고향인 마법의 땅 신월의 숲을<br>
+                엄청난 마력으로 25초간 재현시킨다.<br>
+                숲의 기운이 적을 20초간 무력화시키며<br>
+                자신의 공격력과 방어력이 30% 상승한다.<br>
+                <span style="color: yellowgreen">신월의 숲에 무력화당한 적은 풀속성으로 변한다.</span>
+            </div>
+        </div>
+        <div id="Intro6">
+            <span style="font-size: 30px; color: #FF8C00;">셀리느의 전투 정보</span>
+            <div id="Mod">
+                <br>
+                <img id="ModImg" src="celineSword.png">
+                <div id="ModInfo"></div>
+            </div>
+            <div id="Skills">
+                <span style="font-size: 25px; color: green;">초급 스킬</span>
+                <br><br><br><br><br>
+                <div style="position: absolute; width: 80px; height: 80px; border: 2px solid black; border-radius: 10px; top: 50px; left: 20px;">
+                    <img style="width: 80px; height: 80px;" id="Basic1" src="">
+                </div>
+                <div style="position: absolute; width: 80px; height: 80px; border: 2px solid black; border-radius: 10px; top: 50px; left: 200px;">
+                    <img style="width: 80px; height: 80px;" id="Basic2" src="">
+                </div>
+                <span style="font-size: 25px; color: blue;">중급 스킬</span>
+                <br><br><br><br><br>
+                <div style="position: absolute; width: 80px; height: 80px; border: 2px solid black; border-radius: 10px; top: 190px; left: 20px;">
+                    <img style="width: 80px; height: 80px;" id="Mid1" src="">
+                </div>
+                <div style="position: absolute; width: 80px; height: 80px; border: 2px solid black; border-radius: 10px; top: 190px; left: 200px;">
+                    <img style="width: 80px; height: 80px;" id="Mid2" src="">
+                </div>
+                <span style="font-size: 25px; color: red;">고급 스킬</span>
+                <div style="position: absolute; width: 80px; height: 80px; border: 2px solid black; border-radius: 10px; top: 335px; left: 112px;">
+                    <img style="width: 80px; height: 80px;" id="Adv1" src="">
+                </div>
+            </div>
+            <div id="Stat">
+                <br>
+                <img src="CelineAttack.gif">
+                <br>
+                <span style="color: #FF3333; font-size: 25px;">셀리느</span>
+                <br>
+                <div id="Stats">HP : 2000<br>MP : 100%<br>공격력 : <br>방어력 : <br>치명타 확률 : <br>이동속도 : 1단계</div>
+            </div>
+            <div id="Normal" onclick="Normal()">Normal</div>
+            <div id="Hard" onclick="Hard()">Hard</div>
+        </div>
+    </div>
+</body>
+<script src="index.js">
+</script>
+</html>

@@ -1,0 +1,536 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Noto+Sans+KR:wght@100..900&display=swap');
+body {
+    font-family: "Do Hyeon", sans-serif;
+    font-weight: 400;
+    overflow: hidden; /* 페이지 영역 초과 방지 */
+}
+
+.background, .backgroundImg {
+    display: flex;
+}
+#AddInfo {
+    display: block;
+    position: absolute;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 700px; height: 330px;
+    top: 200px;
+    left: 600px;
+    opacity: 0.9;
+    font-size: 22px;
+    text-align: center;
+}
+#AddInfo1 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 160px;
+}
+#AddInfo2 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 444px;
+}
+#PatternInfo1 {
+    display: none;
+    position: absolute;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 700px; height: 230px;
+    top: 250px;
+    left: 600px;
+    opacity: 0.9;
+    font-size: 22px;
+    text-align: center;
+}
+#PatternInfo2 {
+    display: none;
+    position: absolute;
+    border: 3px solid red;
+    box-shadow: 0 0 15px red;
+    border-radius: 10px;
+    background-color: black;
+    width: 700px; height: 170px;
+    top: 230px;
+    left: 600px;
+    opacity: 0.9;
+    font-size: 24px;
+    color: red;
+    text-align: center;
+}
+#PatternInfo3 {
+    display: none;
+    position: absolute;
+    background-color: black;
+    width: 700px; height: 170px;
+    top: 230px;
+    left: 600px;
+    opacity: 0.9;
+    font-size: 24px;
+    color: white;
+    text-align: center;
+    line-height: 170px;
+}
+#Celine { /* 셀리느 */
+    display: block;
+    position: absolute;
+    top: 620px;
+    left: 40px;
+}
+#Blink { /* 체공 이펙트 */
+    display: none;
+    position: absolute;
+    top: 630px;
+    left: 20px;
+    filter: hue-rotate(135deg);
+}
+/* 받는 데미지 */
+#Damage {
+    display: block;
+    position: absolute;
+    top: 570px;
+    left: 40px;
+    color: #FF6666;
+    -webkit-text-stroke: 2px white;
+    font-size: 42px;
+    text-align: center;
+    line-height: 30px;
+    width: 96px; height: 45px;
+}
+/* 보스 받는 데미지 */
+#KuroDamage {
+    display: block;
+    position: absolute;
+    top: 300px;
+    left: 1550px;
+    color: #FF6666;
+    -webkit-text-stroke: 2px white;
+    font-size: 46px;
+    text-align: center;
+    line-height: 30px;
+    width: 198px; height: 50px;
+}
+#BindDamage {
+    display: block;
+    position: absolute;
+    top: 245px;
+    left: 1550px;
+    color: skyblue;
+    -webkit-text-stroke: 2px white;
+    font-size: 46px;
+    text-align: center;
+    line-height: 30px;
+    width: 198px; height: 50px;
+}
+/* 셀리느 스킬 */
+#Sk1 {
+    display: none;
+    position: absolute;
+    top: 630px;
+    left: 20px;
+    transform: scaleX(-1);
+}
+#Sk2 {
+    display: none;
+    position: absolute;
+    top: 360px;
+    left: 20px;
+}
+#Sk3 { /* 썬더 */
+    display: none;
+    position: absolute;
+    top: 260px;
+    left: 1150px;
+    filter: hue-rotate(165deg);
+}
+#Sk4 { /* 마나 정령 */
+    display: none;
+    position: absolute;
+    top: 590px;
+    left: 20px;
+}
+#Sk5 { /* 배리어 */
+    display: none;
+    position: absolute;
+    top: 585px;
+    left: -15px;
+}
+#Sk6 { /* 프리즈 */
+    display: none;
+    position: absolute;
+    top: 500px;
+    left: 860px;
+    filter: drop-shadow(0px 0px 10px rgba(0, 200, 255, 0.6));
+}
+#Sk7 { /* 워터 페어리 */
+    display: none;
+    position: absolute;
+    top: 530px;
+    left: 20px;
+}
+#Sk8, #Sk8-1, #Sk8-2, #Sk8-3 { /* 블루 메테오 범위 1050까지 */
+    display: none;
+    position: absolute;
+    top: 115px;
+    left: 0px;
+    filter: hue-rotate(200deg);
+}
+#Sk8-1 {
+    left: 150px;
+}
+#Sk8-2 {
+    left: 350px;
+}
+#Sk8-3 {
+    left: 600px;
+}
+#Sk9 {
+    display: none;
+    position: absolute;
+    top: 480px;
+    left: 855px;
+}
+#Heal {
+    display: none;
+    position: absolute;
+    top: 640px;
+    left: 40px;
+}
+#ice { /* 빙결 */
+    display: none;
+    position: absolute;
+    top: 240px;
+    left: 650px;
+    opacity: 0.8;
+    filter: drop-shadow(0px 0px 10px rgba(0, 50, 255, 0.6));
+}
+#WispAttack { /* 정령의 공격 */
+    display: none;
+    position: absolute;
+    filter: hue-rotate(265deg);
+    top: 530px;
+    left: 1250px;
+}
+#WispAppear { /* 정령 소환 */
+    display: none;
+    position: absolute;
+    top: 630px;
+    left: 20px;
+    transform: rotate(270deg);
+}
+#FairyAttack { /* 페어리의 공격 */
+    display: none;
+    position: absolute;
+    top: 580px;
+    left: 90px;
+    transform: scaleX(-1);
+}
+#FairyAppear { /* 페어리 소환 */
+    display: none;
+    position: absolute;
+    top: 520px;
+    left: 25px;
+}
+#Boss { /* 보스 쿠로 */
+    display: block;
+    position: absolute;
+    opacity: 0.1; /* 투명도 20% */
+    top: 360px;
+    left: 1500px;
+    transform: scaleX(1);
+}
+#BossSkill1, #BossSkill1-1, #BossSkill1-2, #BossSkill1-3 {
+    display: none;
+    position: absolute;
+    background-color: rgba(178, 34, 34, 0.4);
+    top: 20px;
+    left: 10px;
+}
+#BossSkill2 {
+    display: none;
+    position: absolute;
+    top: 600px;
+    left: 10px;
+}
+#BossSkill3-0, #BossSkill3-1, #BossSkill3-2, #BossSkill3-3, #BossSkill3-4, #BossSkill3-5,
+#BossSkill3-6, #BossSkill3-7, #BossSkill3-8, #BossSkill3-9, #BossSkill3-10,
+#BossSkill3-11, #BossSkill3-12, #BossSkill3-13 {
+    display: none;
+    position: absolute;
+    opacity: 0.35;
+    top: 600px;
+    left: 10px;
+}
+#MapPoison {
+    display: none;
+    position: absolute;
+    background-color: rgba(152, 251, 152, 0.4);
+    top: 390px;
+    left: 10px;
+}
+#MapBall {
+    display: none;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    filter: invert(100%);
+    opacity: 0.1;
+}
+#BlackMagic {
+    display: none;
+    position: absolute;
+    top: 215px;
+    left: 700px;
+}
+.CelineUI { /* 셀리느 UI */
+    display: block;
+    position: absolute;
+}
+#Name { /* 이름 */
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 80px; height: 25px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-size: 18px;
+    top: 0px;
+}
+#Head { /* 셀리느 */
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 80px; height: 70px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    top: 28px;
+}
+#HP {
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 15px;
+    background: linear-gradient(to right, #FF6666 100%, white 0%);
+    width: 320px; height: 30px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-size: 20px;
+    top: 32px;
+    left: 72px;
+}
+#MP {
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 15px;
+    background: linear-gradient(to right, #66B2FF 50%, white 50%);
+    width: 320px; height: 30px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-size: 20px;
+    top: 65px;
+    left: 72px;
+}
+#BasicSkill1, #BasicSkill2, #MidSkill1, #MidSkill2, #AdvSkill1, #Heal1 {
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 75px; height: 75px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-size: 20px;
+    top: 830px;
+    left: 0px;
+}
+#BasicSkill2 {
+    left: 80px;
+}
+#MidSkill1 {
+    left: 160px;
+}
+#MidSkill2 {
+    left: 240px;
+}
+#AdvSkill1 {
+    left: 320px;
+}
+#Heal1 {
+    left: 400px;
+}
+#CelineBuff1, #CelineBuff2, #CelineDeBuff1, #CelineDeBuff2 {
+    display: none;
+    position: absolute;
+    top: 105px;
+    left: 10px;
+}
+#CelineBuff2 {
+    top: 102px;
+    left: 60px;
+}
+#CelineDeBuff1 {
+    left: 110px;
+}
+#CelineDeBuff2 {
+    top: 102px;
+    left: 160px;
+}
+#Shield {
+    display: none;
+    position: absolute;
+    opacity: 1.0;
+    top: 600px;
+    left: 5px;
+    filter: hue-rotate(290deg) drop-shadow(0px 0px 10px rgba(0, 80, 255, 0.6));
+}
+#BS1, #BS2, #MS1, #MS2, #AS1, #HS1 { /* 키세팅 */
+    display: block;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+#BS1Cool, #BS2Cool, #MS1Cool, #MS2Cool, #AS1Cool { /* 쿨타임 표시 */
+    display: none;
+    position: absolute;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    color: yellow; -webkit-text-stroke: 2px black;
+    font-size: 40px;
+}
+#BossHPBar {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 600px;
+}
+#BossIcon {
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: white;
+    width: 50px; height: 50px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+}
+#BossHPInfo {
+    display: flex;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    background: linear-gradient(to right, crimson 100%, white 0%);
+    width: 680px; height: 30px;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    font-size: 21px;
+    color: black;
+    top: 9px;
+    left: 10px;
+}
+#BossName {
+    display: flex;
+    position: absolute;
+    font-size: 18px;
+    color: red;
+    width: 200px; height: 20px;
+    left: 60px;
+    top: 45px;
+}
+#boss_debuff1, #boss_debuff2 {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 50px;
+}
+#boss_debuff2 {
+    top: 65px;
+    left: 105px;
+}
+#BlackMagicCircle {
+    display: block;
+    position: absolute;
+    top: 66px;
+    left: 1020px;
+}
+#BlackMagicBar {
+    display: flex;
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid white;
+    background: linear-gradient(to right, black 0%, white 100%);
+    box-shadow: 0 0 25px white;
+    opacity: 0.9;
+    width: 230px; height: 25px;
+    font-size: 20px;
+    color: white;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    top: 65px;
+    left: 1050px;
+}
+#StatInfo {
+    width: 500px; height: 80px;
+    display: block;
+    position: absolute;
+    top: 843px;
+    left: 500px;
+    font-size: 20px;
+}
+#Ending {
+    display: none;
+    position: absolute;
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px white;
+    width: 900px; height: 530px;
+    background-color: white;
+    top: 150px;
+    left: 500px;
+    text-align: center;
+    font-size: 24px;
+}
+#Time {
+    display: block;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 130px; height: 60px;
+    background-color: white;
+    top: 10px;
+    left: 10px;
+    text-align: center;
+    font-size: 21px;
+}
+#ReTry, #Golem, #HardStart {
+    display: block;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 0 0 10px black;
+    width: 150px; height: 40px;
+    background-color: white;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+    top: 450px;
+    cursor: pointer;
+}
+#ReTry {
+    left: 150px;
+}
+#Golem {
+    left: 375px;
+    color: #404040;
+}
+#HardStart {
+    left: 600px;
+    color: red;
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="celineicon2.png"> <!--사이트 아이콘-->
+    <title>매직 셀리느 RPG v1.2</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="NormalKuro.css">
+</head>
+<body>
+    <div class="background">
+        <audio id="BGM" loop autoplay> <!--BGM-->
+            <source src="BossBGM.mp3" type="audio/mp3">
+        </audio>
+        <div class="backgroundImg"> <!--쿠로 맵 배
+            경-->
+            <div id="Map">
+                <img id="MapImg" src="Map2.png">
+            </div>
+        </div>
+        <!--흑마법 보호막-->
+        <div id="Shield">
+            <img style="width: 300px; height: 171px;" src="ShieldCircle.gif">
+        </div>
+        <div id="Boss"> <!--보스 : 쿠로-->
+            <div id="Kuro">
+                <img style="width: 300px; height: 403px;" id="KuroImg" src="KuroStand.gif" alt="보스">
+            </div>
+            <audio id="BossSound1">
+                <source src="KuroAppear.mp3" type="audio/mp3">
+            </audio>
+            <audio id="BossSound2">
+                <source src="KuroTP.mp3" type="audio/mp3">
+            </audio>
+            <audio id="BossSound3">
+                <source src="KuroEletric.mp3" type="audio/mp3">
+            </audio>
+            <audio id="BossDisappear">
+                <source src="KuroDisappear.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Celine"> <!--셀리느-->
+            <img id="CelineImg" src="Celine.gif" alt="셀리느">
+        </div>
+        <div id="Blink"> <!--체공 이펙트-->
+            <img id="BlinkImg" style="width: 100px; height: 100px;" src="Blink.gif">
+            <audio id="BlinkSound">
+                <source src="BlinkSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <!-- 데미지 -->
+        <div id="Damage">
+        </div>
+        <!-- 보스 데미지 -->
+        <div id="KuroDamage">
+        </div>
+        <div id="BindDamage">
+        </div>
+        <!--보스 패턴 : 번개-->
+        <div id="BossSkill1">
+            <img style="width: 150px; height: 810px;" src="empty.png">
+            <audio id="BossAtt1Sound">
+                <source src="sparkSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="BossSkill1-1">
+            <img style="width: 150px; height: 810px;" src="empty.png">
+        </div>
+        <div id="BossSkill1-2">
+            <img style="width: 150px; height: 810px;" src="empty.png">
+        </div>
+        <div id="BossSkill1-3">
+            <img style="width: 150px; height: 810px;" src="empty.png">
+        </div>
+        <!--맵 패턴 : 독의 공간-->
+        <div id="MapPoison">
+            <img style="width: 360px; height: 360px;" src="empty.png">
+            <audio id="PoisonSound">
+                <source src="posionSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <!--보스 패턴 : 구체-->
+        <div id="BossSkill2">
+            <img style="width: 90px; height: 90px;" src="BossBall.gif">
+            <audio id="BossAtt2Sound">
+                <source src="KuroBall.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <!--보스 패턴 : 푸른 불꽃-->
+        <div id="BossSkill3-0">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-1">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-2">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-3">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-4">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-5">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-6">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-7">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-8">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-9">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-10">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-11">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-12">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <div id="BossSkill3-13">
+            <img style="width: 150px; height: 150px;" src="boss_bluefire.gif">
+        </div>
+        <!--맵 패턴 : 선사파이어의 구체-->
+        <div id="MapBall">
+            <img style="width: 160px; height: 160px;" src="MapBall.gif">
+            <audio id="MapBallSound">
+                <source src="MapBallSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <!--흑마법 폭주-->
+        <div id="BlackMagic">
+            <img style="width: 500px; height: 500px;" src="BlackMagic.gif">
+            <audio id="BlackMagicSound">
+                <source src="BlackMagicSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk1"> <!--에너지 볼-->
+            <img style="width: 140px; height: 74px;" src="energyball.gif">
+            <audio id="Skill1Sound">
+                <source src="Skill1_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk2"> <!--토네이도-->
+            <img style="width: 360px; height: 450px;" src="tornado.gif">
+            <audio id="Skill2Sound">
+                <source src="Skill2_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk3"> <!--썬더-->
+            <img src="thunderbolt.gif">
+            <audio id="Skill3Sound">
+                <source src="Skill3_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk4"> <!--마나 정령-->
+            <img src="Wisp.gif">
+            <audio id="Skill4Sound">
+                <source src="Skill4_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk5"> <!--배리어-->
+            <img style="width: 200px; height: 200px;" src="Barrier.gif">
+            <audio id="Skill5Sound">
+                <source src="Skill5_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk6"> <!--프리즈-->
+            <img style="width: 200px; height: 200px;" src="freeze.gif">
+            <audio id="Skill6Sound">
+                <source src="Skill6_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk7"> <!--워터 페어리-->
+            <img id="FairyImg" src="WaterFairy.gif">
+            <audio id="Skill7Sound">
+                <source src="Skill7_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk8"> <!--블루 메테오-->
+            <img style="width: 1000px; height: 666px;" src="meteor.gif">
+            <audio id="Skill8Sound">
+                <source src="Skill8_Sound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Sk8-1"> <!--블루 메테오-->
+            <img style="width: 1000px; height: 666px;" src="meteor.gif">
+        </div>
+        <div id="Sk8-2"> <!--블루 메테오-->
+            <img style="width: 1000px; height: 666px;" src="meteor.gif">
+        </div>
+        <div id="Sk8-3"> <!--블루 메테오-->
+            <img style="width: 1000px; height: 666px;" src="meteor.gif">
+        </div>
+        <div id="Sk9"> <!--신월의 숲 나뭇잎-->
+            <img style="width: 200px; height: 150px;" src="leaf.gif">
+            <audio id="ForestBGM" loop autoplay> <!--BGM-->
+                <source src="ForestBGM.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="Heal"> <!--힐-->
+            <img style="width: 80px; height: 80px;" src="Skillheal.gif">
+            <audio id="HealSound">
+                <source src="healSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="ice">
+            <img src="ice.png">
+        </div>
+        <div id="WispAttack"> <!--정령의 공격-->
+            <img src="WispAttack.gif">
+        </div>
+        <div id="WispAppear">
+            <img style="width: 140px; height: 74px;" src="energyball.gif">
+        </div>
+        <div id="FairyAttack"> <!--페어리의 공격-->
+            <img style="width: 100px; height: 66px;" src="FairyBall.gif">
+            <audio id="FairyAttackSound">
+                <source src="FairyAttackSound.mp3" type="audio/mp3">
+            </audio>
+        </div>
+        <div id="FairyAppear">
+            <img style="width: 150px; height: 150px;" src="FairyAppear.gif">
+        </div>
+        <div class="CelineUI"> <!--셀리느 UI-->
+            <div id="HP">
+                HP : 2000 (100%)
+            </div>
+            <div id="MP">
+                MP : 50%
+            </div>
+            <div id="Name">
+                셀리느
+            </div>
+            <div id="Head">
+                <img src="celine2.png">
+            </div>
+            <div id="BasicSkill1">
+                <span id="BS1"></span>
+                <span id="BS1Cool"></span>
+                <img id="BS1Img" style="width: 55px; height: 55px;" src="">
+            </div>
+            <div id="BasicSkill2">
+                <span id="BS2"></span>
+                <span id="BS2Cool"></span>
+                <img id="BS2Img" style="width: 55px; height: 55px;" src="">
+            </div>
+            <div id="MidSkill1">
+                <span id="MS1"></span>
+                <span id="MS1Cool"></span>
+                <img id="MS1Img" style="width: 55px; height: 55px;" src="">
+            </div>
+            <div id="MidSkill2">
+                <span id="MS2"></span>
+                <span id="MS2Cool"></span>
+                <img id="MS2Img" style="width: 55px; height: 55px;" src="">
+            </div>
+            <div id="AdvSkill1">
+                <span id="AS1"></span>
+                <span id="AS1Cool"></span>
+                <img id="AS1Img" style="width: 75px; height: 75px;" src="">
+            </div>
+            <div id="Heal1">
+                <span id="HS1">Ctrl</span>
+                <img src="Healicon.png">
+            </div>
+            <div id="CelineBuff1"> <!--공격력-->
+                <img style="width: 50px; height: 50px;" src="Attack.png">
+            </div>
+            <div id="CelineBuff2"> <!--방어력-->
+                <img style="width: 50px; height: 50px;" src="guardup.png">
+            </div>
+            <div id="CelineDeBuff1"> <!--중독-->
+                <img style="width: 50px; height: 50px;" src="PoisonDebuff.png">
+            </div>
+            <div id="CelineDeBuff2"> <!--감속-->
+                <img style="width: 50px; height: 50px;" src="speeddown.png">
+            </div>
+        </div>
+        <div id="AddInfo"> <!--추가 정보-->
+            <img id="AddInfo1" src="CelineJump.png">
+            <img id="AddInfo2" src="Celine.gif">
+            <img style="position: absolute; width: 100px; height: 100px; left: 160px; top: 30px; filter: hue-rotate(135deg);" src="Blink.gif">
+            <img style="position: absolute; width: 80px; height: 80px; left: 454px; top: 50px;" src="Skillheal.gif">
+            <br><br><br><br><br><br><br>
+            <div><span style="color: blue;">↑ 키</span> : 2.5초간 공중에 체공할 수 있습니다! 쿨타임 : 4초</div>
+            <br>
+            <div><span style="color: yellowgreen;">Ctrl 키</span> : MP를 10% 소모하고 HP를 300 회복합니다!</div>
+        </div>
+        <div id="PatternInfo1"> <!--보스 패턴 정보-->
+            <br>
+            <div><span style="color: red">고대의 마법사 쿠로</span>는 상태 이상을 동반한 마법을 사용합니다!</div>
+            <br>
+            <div><img style="width: 50px; height: 50px;" src="PoisonDebuff.png">
+            <span style="color: green">중독</span> : 체공이 불가능해지고, 지속적으로 피해를 입는다.</div>
+            <div><img style="width: 50px; height: 50px;" src="speeddown.png">
+            <span style="color: navy">감속</span> : 이동속도가 절반으로 줄어든다.</div>
+        </div>
+        <div id="PatternInfo2">
+            <br><br>
+            <div>쿠로의 흑마법이 폭주합니다!! 수호의 마법진으로 이동하세요!!</div>
+            <div>폭주에 휘말리면 당신의 기력이 흡수될거예요!!</div>
+        </div>
+        <div id="PatternInfo3">
+        </div>
+        <!--흑마법 폭주 게이지-->
+        <div id="BlackMagicBar">
+            0%
+        </div>
+        <div id="BossHPBar">
+            <div id="BossHPInfo">
+                300000 (100%)
+            </div>
+            <div id="BossIcon">
+                <img src="BossKuroicon.png">
+            </div>
+            <div id="BossName">
+                고대의 마법사 쿠로 (Normal)
+            </div>
+            <div id="boss_debuff1"> <!--공격력 감소-->
+                <img style="width: 50px; height: 50px;" src="swordbreak.png">
+            </div>
+            <div id="boss_debuff2"> <!--방어력 감소-->
+                <img style="width: 50px; height: 50px;" src="guardbreak.png">
+            </div>
+        </div>
+        <div id="Ending">
+            <div style="font-size: 38px; color: goldenrod; -webkit-text-stroke: 1px black;
+            ">
+                Congratulation!!
+            </div>
+            <img style="width: 200px; height: 260px;" src="CelinePicture.jpg">
+            <div><span style="color: red">고대의 마법사 쿠로(Normal)</span>를 물리쳤습니다!!</div>
+            <div>멋진 플레이 정말 감사합니다!!</div>
+            <div><span style="color: rgb(95, 6, 6)">고대의 마법사 쿠로(Hard)</span>와 다음 보스를 기대해주세요!</div>
+            <div id="Time">
+                ClearTime
+            </div>
+            <div id="ReTry" onclick="ReGame()">
+                ReStart
+            </div>
+            <div id="Golem" onclick="GolemPlay()">
+                고대의 골렘
+            </div>
+            <div id="HardStart" onclick="HardStart()">
+                Hard
+            </div>
+        </div>
+        <div id="StatInfo">
+        </div>
+    </div>
+</body>
+<script src="CelineMove.js">
+</script>
+<script src="CelineStat.js">
+</script>
+<script src="BossMove.js">
+</script>
+<script src="BossStat.js">
+</script>
+<script>
+    function ReGame() {
+        const Re = confirm('매직 셀리느 v1.2를 재시작하시겠습니까?');
+
+        if (Re) {
+            window.location.href = 'http://celine2358.github.io/Magicceline2';
+        } else {
+        }
+    }
+    function GolemPlay() {
+        const Gol = confirm('매직 셀리느 v1.0 고대의 골렘을 플레이하시겠습니까?');
+
+        if (Gol) {
+            window.location.href = 'http://celine2358.github.io/Magicceline';
+        } else {
+        }
+    }
+    function HardStart() {
+        alert('고대의 마법사 쿠로 하드 모드는 준비중입니다!');
+    }
+</script>
+</html>
